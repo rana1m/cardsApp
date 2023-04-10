@@ -3,6 +3,17 @@ const app = express();
 const generateImage = require("./generateImage"); 
 const PORT = process.env.PORT || 3000
 
+// ... Other imports
+const path = require("path");
+
+// Other app.use middleware
+app.use(express.static(path.join(__dirname, "client", "build")));
+
+// Right before your app.listen(), add this:
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
 app.get("/download", async function (req, res) {
   const { name } = req.query;
   const buffer = await generateImage(name); 
