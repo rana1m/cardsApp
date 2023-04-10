@@ -25,10 +25,6 @@ app.get("/", async function (req, res) {
   res.end(buffer, "binary");
 });
 
-app.get("/", function (req, res) {
-  res.send('hello');
-});
-
 app.get("/view", async function (req, res) {
   const { name } = req.query;
   const buffer = await generateImage(name);
