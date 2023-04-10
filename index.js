@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const generateImage = require("./generateImage"); 
+const PORT = process.env.PORT || 3000
 
 app.get("/download", async function (req, res) {
   const { name } = req.query;
@@ -38,6 +39,6 @@ app.get("/view", async function (req, res) {
   res.end(buffer);
 });
 
-app.listen(process.env.PORT || 3000, function () {
+app.listen(PORT, function () {
   console.log("Example app listening on port 3000!");
 });
